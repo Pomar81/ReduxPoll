@@ -1,1 +1,1 @@
-# ReduxPoll
+# ReduxPoll from Tyler McGinnis
