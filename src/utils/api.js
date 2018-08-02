@@ -4,7 +4,7 @@ import {
   _savePoll,
   _savePollAnswer
 } from './_DATA.js'
-import { isObject } from './helpers'
+import { isObject } from './helpers.js'
 
 function flattenPoll (poll) {
   return Object.keys(poll)
