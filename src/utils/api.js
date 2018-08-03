@@ -3,46 +3,46 @@ import {
   _getPolls,
   _savePoll,
   _savePollAnswer
-} from './_DATA.js'
-import { isObject } from './helpers.js'
+} from './_DATA.js';
+import {isObject} from './helpers.js';
 
 function flattenPoll (poll) {
   return Object.keys(poll)
     .reduce((flattenedPoll, key) => {
-      const val = poll[key]
+      const val = poll[key];
 
       if (isObject(val)) {
-        flattenedPoll[key + 'Text'] = val.text
-        flattenedPoll[key + 'Votes'] = val.votes
-        return flattenedPoll
+        flattenedPoll[key + 'Text'] = val.text;
+        flattenedPoll[key + 'Votes'] = val.votes;
+        return flattenedPoll;
       }
 
-      flattenedPoll[key] = val
-      return flattenedPoll
-    }, {})
+      flattenedPoll[key] = val;
+      return flattenedPoll;
+    }, {});
 }
 
 function formatPolls (polls) {
-  const pollIds = Object.keys(polls)
+  const pollIds = Object.keys(polls);
 
   return pollIds.reduce((formattedPolls, id) => {
-    formattedPolls[id] = flattenPoll(polls[id])
-    return formattedPolls
-  }, {})
+    formattedPolls[id] = flattenPoll(polls[id]);
+    return formattedPolls;
+  }, {});
 }
 
 function formatUsers (users) {
   return Object.keys(users)
     .reduce((formattedUsers, id) => {
-      const user = users[id]
+      const user = users[id];
 
       formattedUsers[id] = {
         ...user,
         answers: Object.keys(user.answers)
-      }
+      };
 
-      return formattedUsers
-    }, {})
+      return formattedUsers;
+    }, {});
 }
 
 export function getInitialData () {
@@ -52,14 +52,14 @@ export function getInitialData () {
   ]).then(([users, polls]) => ({
     users: formatUsers(users),
     polls: formatPolls(polls),
-  }))
+  }));
 }
 
 export function savePoll (poll) {
   return _savePoll(poll)
-    .then((p) => flattenPoll(p))
+    .then((p) => flattenPoll(p));
 }
 
 export function savePollAnswer (args) {
-  return _savePollAnswer(args)
+  return _savePollAnswer(args);
 }

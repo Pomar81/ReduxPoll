@@ -160,11 +160,11 @@ let polls = {
     },
     c: {
       text: 'Oprah Winfrey',
-      votes: ['tylermcginnis'],
+      votes: [],
     },
     d: {
       text: 'Dwayne Johnson',
-      votes: [],
+      votes: ['tylermcginnis'],
     }
   },
 }

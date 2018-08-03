@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+import {handleAddPoll} from '../actions/polls';
 
 class AddPoll extends Component {
   state = {
@@ -22,7 +24,8 @@ class AddPoll extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log('submit ', this.state);
+    this.props.history.push('/');
+    this.props.dispatch(handleAddPoll(this.state));
   }
   
   render() {
@@ -82,4 +85,9 @@ class AddPoll extends Component {
   }
 }
 
-export default AddPoll;
+AddPoll.propTypes = {
+  dispatch: PropTypes.func,
+  history: PropTypes.node,
+};
+
+export default connect()(AddPoll);
